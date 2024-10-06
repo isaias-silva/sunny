@@ -1,15 +1,26 @@
 {
   "name": "sunny",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "/build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "build": "tsc",
+    "dev": "tsx src/index.ts --watch",
+    "start ": "node /build/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.1",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "puppeteer": "^23.5.0",
+    "puppeteer-core": "^23.5.0"
   }
 }
