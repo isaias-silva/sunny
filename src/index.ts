@@ -1,3 +1,14 @@
-import { Client } from "./Client";
+import { Sunny } from "./Sunny";
 
-new Client().connect()
+
+
+const tikSunny = new Sunny()
+tikSunny.connect({
+    
+    time_to_refresh: 10,
+    qrInTerminal: false
+})
+
+tikSunny.ev.on('s.conn', (msg) => {
+    console.log(msg)
+})
