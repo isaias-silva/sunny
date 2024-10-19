@@ -1,5 +1,7 @@
 import { EventEmitter } from 'events'
-import { Iconnection } from './interfaces/Iconnection';
+import { Iconnection } from '../interfaces/connection';
+import Logger from './Logger';
+import logger from './Logger';
 
 interface IEvents{
     's.conn':(msg: Iconnection) => void;
@@ -10,13 +12,14 @@ interface IEvents{
 
 export class Emitter extends EventEmitter {
 
-    
+ 
     emit<K extends keyof IEvents>(event: K, ...args: Parameters<IEvents[K]>): boolean {
         return super.emit(event, ...args);
     }
 
     
     on<K extends keyof IEvents>(event: K, listener: IEvents[K]): this {
+    
         return super.on(event, listener);
     }
 

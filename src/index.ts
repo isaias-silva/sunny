@@ -1,14 +1,31 @@
-import { Sunny } from "./Sunny";
+import { Sunny } from "./core/Sunny";
+import { Causes } from "./interfaces/connection";
 
 
 
-const tikSunny = new Sunny()
-tikSunny.connect({
-    
-    time_to_refresh: 10,
-    qrInTerminal: false
-})
 
-tikSunny.ev.on('s.conn', (msg) => {
-    console.log(msg)
-})
+const connect = () => {
+
+    const tikSunny = new Sunny()
+
+    tikSunny.makeConnection({
+
+        seconds_to_refresh: 20,
+        qrInTerminal: true,
+
+    })
+ 
+
+    tikSunny.ev.on('s.conn', (connection) => {
+       if(!connection.open){
+        if(connection.cause!=Causes.SERVER_ERROR){
+           connect()
+        }
+
+       }
+        
+    })
+}
+
+connect()
+
