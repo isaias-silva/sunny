@@ -11,6 +11,7 @@ export interface Iconnection{
 export enum Causes{
     MANY_REQUESTS,
     SERVER_ERROR,
+    MAX_CONNECTIONS,
 }
 export interface Iparams {
     next?: string
