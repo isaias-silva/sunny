@@ -10,7 +10,7 @@ const connect = () => {
 
     tikSunny.makeConnection({
 
-        seconds_to_refresh: 20,
+        seconds_to_refresh: 5,
         qrInTerminal: true,
 
     })

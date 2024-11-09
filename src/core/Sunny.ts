@@ -14,7 +14,7 @@ import { delay } from '../utils/delay';
 export class Sunny {
 
     private URL = "https://www.tiktok.com"
-    private MAX_REQS = 5
+    private MAX_REQS = 2
     private client: Axios;
     
     private executionProps = { inMakeConnection: false };
@@ -47,6 +47,7 @@ export class Sunny {
             params["next"] = next || 'https://www.tiktok.com'
 
             if (reqs >= this.MAX_REQS) {
+                logger.warn("MANY REQUESTS")
                 this.executionProps.inMakeConnection = false
                 return this.ev.emit("s.conn", { open: false, cause: Causes.MANY_REQUESTS })
 
@@ -57,7 +58,7 @@ export class Sunny {
             }).then(res => res.data.data).catch(err => null)
 
             if (!connection_data) {
-
+                logger.error("internal error in connection")
                 this.executionProps.inMakeConnection = false
                 return this.ev.emit("s.conn", { open: false, cause: Causes.SERVER_ERROR })
 
