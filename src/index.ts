@@ -18,7 +18,7 @@ const connect = () => {
 
     tikSunny.ev.on('s.conn', (connection) => {
        if(!connection.open){
-        if(connection.cause!=Causes.SERVER_ERROR){
+        if(connection.cause!=Causes.SERVER_ERROR && connection.cause!=Causes.MAX_CONNECTIONS){
            connect()
         }
 
